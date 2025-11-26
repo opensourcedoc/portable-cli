@@ -1,31 +1,21 @@
-# PHP CLI Boilerplate
+# Portable CLI
 
-A demonstrative PHP project to wrap a tiny PHP script with both Batch script and Bourne shell script.
+A minimal layout for writing portable command-line tools.
 
-## System Requirements
+This project separates platform-specific wrappers from the core logic:
 
-* PHP 7+
+- `bin/cli` — POSIX `sh` wrapper  
+- `bin/cli.bat` — Windows batch wrapper  
+- `libexec/cli.php` — core script (language-agnostic)
 
-## Usage
+The wrapper handles:
+- checking whether the required runtime exists  
+- passing arguments through  
+- returning the correct exit code  
 
-### Run the PHP Script on Windows
+The core script does not care about the operating system.
 
-```shell
-> git clone https://github.com/opensourcedoc/php-cli-boilerplate.git myapp
-> cd myapp
-> .\bin\cli.bat
-Hello World
-```
+This repository shows one possible structure for writing small, portable CLI utilities without frameworks or dependencies.  
+Replace `cli.php` with any language you prefer.
 
-### Run the PHP Script on Unix
-
-```shell
-$ git clone https://github.com/opensourcedoc/php-cli-boilerplate.git myapp
-$ cd myapp
-$ ./bin/cli
-Hello World
-```
-
-## Copyright
-
-Copyright (c) 2022 Michelle Chen. Licensed under MIT
+Nothing more.
