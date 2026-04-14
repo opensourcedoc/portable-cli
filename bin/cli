@@ -2,18 +2,17 @@
 #
 # Wrapper for PHP CLI Boilerplate
 
-
 # Check whether PHP is available on the system.
-if ! command -v php 2>&1 >/dev/null;
-then
-    echo "No PHP on the system" >&2;
-    exit 1;
+if ! command -v php >/dev/null 2>&1; then
+    echo "No PHP on the system" >&2
+    exit 1
 fi
 
 # Get the path of current shell script.
-cwd=$(dirname $0);
+cwd=$(dirname "$0")
+
 # Get the directory of our PHP script.
-libexec="${cwd}/../libexec";
+libexec="${cwd}/../libexec"
 
 # Run the PHP script and pass command-line arguments to it.
-php "${libexec}/cli.php" "$@";
+exec php "${libexec}/cli.php" "$@"
